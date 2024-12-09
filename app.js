@@ -11,6 +11,8 @@ const { loginRouter } = require('./routes/loginRouter');
 const { registerRouter } = require('./routes/registerRouter');
 const { notFound } = require('./utils/auth');
 const { errorController } = require('./errors/errorController');
+const { createFolderRouter } = require('./routes/createFolderRouter');
+const { newFileRouter } = require('./routes/newFileRouter');
 
 const assetsPath = path.join(__dirname, 'views');
 const app = express();
@@ -38,8 +40,10 @@ app.use(passport.session());
 
 // Routes Here
 app.use('/', indexRouter);
-app.use('/login', loginRouter);
 app.use('/register', registerRouter);
+app.use('/login', loginRouter);
+app.use('/create-folder', createFolderRouter);
+app.use('/new-file', newFileRouter);
 app.use('*', notFound);
 app.use(errorController);
 
